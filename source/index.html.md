@@ -3,11 +3,8 @@ title: API Reference
 
 language_tabs:
   - python
-  - shell
-  - javascript
 
 toc_footers:
-<!--  - <a href='#'>Sign Up for a Developer Key</a> -->
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 
@@ -29,23 +26,11 @@ import requests
 url = 'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'
 
 headers = {
-    'username': "admin",
-    'password': "admin",
+    'username': "uname",
+    'password': "paswd",
 }
 
 r = requests.post(url, headers=headers, params=payload)
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
 ```
 
 > Make sure to replace `username` and `password` with your credentials.
@@ -53,14 +38,10 @@ let api = kittn.authorize('meowmeowmeow');
 
 User credentials are expected to be included in all API requests to the server in a header that looks like the following:
 
-```
+```curl
 username: uname
 password: paswd
 ```
-
-<aside class="notice">
-You must replace <code>uname</code> and <code>paswd</code> with your own username and password.
-</aside>
 
 # Background Screening
 
@@ -87,28 +68,20 @@ payload = {
     'DOB': '1990-01-01',
     'screening_type': 'all',
     'sandbox': True
-}    
+}
 
 r = requests.post(url, headers=headers, params=payload)
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 
-{"order_id": "91334", "reference_id": "1234567890", "status": "pending"}
+{
+    "order_id": "91334", 
+    "reference_id": "1234567890", 
+    "status": "pending"
+}
 
 ```
 
@@ -173,27 +146,20 @@ import requests
         'order_id': '91338',
         'reference_id': '1234567890',
         'sandbox': True
-    }    
+    }
 
     r = requests.get(url, headers=headers, params=payload)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-{"order_id": "91334", "reference_id": "111222333", "status": "pending", "report_url": "https://example.com?file=91335&format=pdf"}
+{
+    "order_id": "91334", 
+    "reference_id": "111222333", 
+    "status": "pending", 
+    "report_url": "https://example.com?file=91335&format=pdf"
+}
 ```
 
 This endpoint returns json data with order status and report URL.
