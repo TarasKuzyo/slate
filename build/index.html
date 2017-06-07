@@ -1,0 +1,481 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;python&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="python">python</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>.</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'username'</span><span class="p">:</span> <span class="s">"uname"</span><span class="p">,</span>
+    <span class="s">'password'</span><span class="p">:</span> <span class="s">"paswd"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">username</code> and <code class="prettyprint">password</code> with your credentials.</p>
+</blockquote>
+
+<p>User credentials are expected to be included in all API requests to the server in a header that looks like the following:</p>
+<pre class="highlight plaintext"><code>username: uname
+password: paswd
+</code></pre>
+<h1 id="background-screening">Background Screening</h1>
+
+<h2 id="submit-background-screening-request">Submit Background Screening Request</h2>
+<pre class="highlight python tab-python"><code>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'username'</span><span class="p">:</span> <span class="s">"admin"</span><span class="p">,</span>
+    <span class="s">'password'</span><span class="p">:</span> <span class="s">"admin"</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'first_name'</span><span class="p">:</span> <span class="s">'John'</span><span class="p">,</span>
+    <span class="s">'last_name'</span><span class="p">:</span> <span class="s">'Doe'</span><span class="p">,</span>
+    <span class="s">'address'</span><span class="p">:</span> <span class="s">'123 Fake Street, Springville, UT, 12345'</span><span class="p">,</span>
+    <span class="s">'reference_id'</span><span class="p">:</span> <span class="s">'1234567890'</span><span class="p">,</span>
+    <span class="s">'ssn'</span><span class="p">:</span> <span class="s">'333-22-1111'</span><span class="p">,</span>
+    <span class="s">'DOB'</span><span class="p">:</span> <span class="s">'1990-01-01'</span><span class="p">,</span>
+    <span class="s">'screening_type'</span><span class="p">:</span> <span class="s">'all'</span><span class="p">,</span>
+    <span class="s">'sandbox'</span><span class="p">:</span> <span class="bp">True</span>
+<span class="p">}</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91334"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This endpoint returns json data with backreference details.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<h4 id="required">Required</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>first_name</td>
+<td>The first name of the applicant.</td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>The last name of the applicant.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>The address of the applicant.</td>
+</tr>
+<tr>
+<td>ssn</td>
+<td>Social Security Number of the applicant.</td>
+</tr>
+<tr>
+<td>screening_type</td>
+<td>Type of background check (all</td>
+</tr>
+</tbody></table>
+
+<h4 id="optional">Optional</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reference_id</td>
+<td>random 32 character string</td>
+<td>Provides for the client to transmit any sort of file identifier, reference data, or other information of its choosing.</td>
+</tr>
+<tr>
+<td>DOB</td>
+<td>None</td>
+<td>The birthdate of the applicant.</td>
+</tr>
+<tr>
+<td>sandbox</td>
+<td>False</td>
+<td>If True the sandbox URL is used, otherwise use production URL.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+<code>DOB</code> field is required if <code>screening_type</code> is either <code>all</code> or <code>criminal</code>.
+</aside>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>JSON Response</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td><code class="prettyprint">{&quot;errors&quot;: &quot;Invalid login. Invalid login credentials.&quot;}</code></td>
+</tr>
+<tr>
+<td>422</td>
+<td><code class="prettyprint">{&quot;errors&quot;: {&quot;screening_type&quot;: [&quot;Not a valid choice.&quot;] } }</code></td>
+</tr>
+<tr>
+<td>422</td>
+<td><code class="prettyprint">{&quot;errors&quot;: {&quot;DOB&quot;: [&quot;Argument is required for criminal background check.&quot;] } }</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="background-screening-status-check">Background screening status check</h2>
+<pre class="highlight python tab-python"><code>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="s">'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'</span>
+
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'username'</span><span class="p">:</span> <span class="s">"admin"</span><span class="p">,</span>
+        <span class="s">'password'</span><span class="p">:</span> <span class="s">"admin"</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'order_id'</span><span class="p">:</span> <span class="s">'91338'</span><span class="p">,</span>
+        <span class="s">'reference_id'</span><span class="p">:</span> <span class="s">'1234567890'</span><span class="p">,</span>
+        <span class="s">'sandbox'</span><span class="p">:</span> <span class="bp">True</span>
+    <span class="p">}</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91334"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111222333"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"report_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com?file=91335&amp;format=pdf"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns json data with order status and report URL.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<h4 id="required">Required</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>order_id</td>
+<td>The unique identifier for the background check order (returned in POST request response)</td>
+</tr>
+</tbody></table>
+
+<h4 id="optional">Optional</h4>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reference_id</td>
+<td>None</td>
+<td>Provides for the client to transmit any sort of file identifier, reference data, or other information of its choosing.</td>
+</tr>
+<tr>
+<td>sandbox</td>
+<td>False</td>
+<td>If True the sandbox URL is used, otherwise use production URL.</td>
+</tr>
+</tbody></table>
+
+<h3 id="errors">Errors</h3>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>JSON Response</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td><code class="prettyprint">{&quot;errors&quot;: &quot;Invalid login. Invalid login credentials.&quot;}</code></td>
+</tr>
+<tr>
+<td>422</td>
+<td><code class="prettyprint">{&quot;errors&quot;: &quot;Missing, invalid and/or unauthorized &#39;OrderId&#39; element.&quot; }</code></td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="python">python</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
