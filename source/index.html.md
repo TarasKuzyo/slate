@@ -2,43 +2,38 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - ruby
   - python
+  - shell
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+<!--  - <a href='#'>Sign Up for a Developer Key</a> -->
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
-includes:
-  - errors
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This example API documentation page was created with [Slate](https://github.com/tripit/slate).
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
 
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
+url = 'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'
+
+headers = {
+    'username': "admin",
+    'password': "admin",
+}
+
+r = requests.post(url, headers=headers, params=payload)
 ```
 
 ```shell
@@ -53,34 +48,48 @@ const kittn = require('kittn');
 let api = kittn.authorize('meowmeowmeow');
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `username` and `password` with your credentials.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+User credentials are expected to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```
+username: uname
+password: paswd
 ```
 
-```python
-import kittn
+<aside class="notice">
+You must replace <code>uname</code> and <code>paswd</code> with your own username and password.
+</aside>
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
+# Background Screening
+
+## Submit Background Screening Request
+
+
+```python
+
+import requests
+
+url = 'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'
+
+headers = {
+    'username': "admin",
+    'password': "admin",
+}
+
+payload = {
+    'first_name': 'John',
+    'last_name': 'Doe',
+    'address': '123 Fake Street, Springville, UT, 12345',
+    'reference_id': '1234567890',
+    'ssn': '333-22-1111',
+    'DOB': '1990-01-01',
+    'screening_type': 'all',
+    'sandbox': True
+}    
+
+r = requests.post(url, headers=headers, params=payload)
 ```
 
 ```shell
@@ -98,55 +107,75 @@ let kittens = api.kittens.get();
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+
+{"order_id": "91334", "reference_id": "1234567890", "status": "pending"}
+
 ```
 
-This endpoint retrieves all kittens.
+This endpoint returns json data with backreference details.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+#### Required
+
+Parameter      | Description
+-------------- | -----------
+first_name     | The first name of the applicant.
+last_name      | The last name of the applicant.
+address        | The address of the applicant.
+ssn            | Social Security Number of the applicant.
+screening_type | Type of background check (all|credit|criminal)
+
+#### Optional
+
+Parameter    | Default | Description
+------------ | ------- | -----------
+reference_id | random 32 character string | Provides for the client to transmit any sort of file identifier, reference data, or other information of its choosing.
+DOB          | None    | The birthdate of the applicant.
+sandbox      | False   | If True the sandbox URL is used, otherwise use production URL.
+
+
+<aside class="notice">
+<code>DOB</code> field is required if <code>screening_type</code> is either <code>all</code> or <code>criminal</code>.
 </aside>
 
-## Get a Specific Kitten
+### Errors
 
-```ruby
-require 'kittn'
+Error Code | JSON Response
+---------- | -------------
+401 | `{"errors": "Invalid login. Invalid login credentials."}`
+422 | `{"errors": {"screening_type": ["Not a valid choice."] } }`
+422 | `{"errors": {"DOB": ["Argument is required for criminal background check."] } }`
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+
+
+
+## Background screening status check
+
 
 ```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+import requests
+
+    url = 'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'
+
+    headers = {
+        'username': "admin",
+        'password': "admin",
+    }
+
+    payload = {
+        'order_id': '91338',
+        'reference_id': '1234567890',
+        'sandbox': True
+    }    
+
+    r = requests.get(url, headers=headers, params=payload)
 ```
 
 ```shell
@@ -164,26 +193,39 @@ let max = api.kittens.get(2);
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
+{"order_id": "91334", "reference_id": "111222333", "status": "pending", "report_url": "https://example.com?file=91335&format=pdf"}
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint returns json data with order status and report URL.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0`
 
 ### URL Parameters
 
+#### Required
+
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+order_id  | The unique identifier for the background check order (returned in POST request response)
+
+#### Optional
+
+Parameter    | Default | Description
+------------ | ------- | -----------
+reference_id | None | Provides for the client to transmit any sort of file identifier, reference data, or other information of its choosing. 
+sandbox      | False | If True the sandbox URL is used, otherwise use production URL.
+
+
+### Errors
+
+Error Code | JSON Response
+---------- | -------------
+401 | `{"errors": "Invalid login. Invalid login credentials."}`
+422 | `{"errors": "Missing, invalid and/or unauthorized 'OrderId' element." }`
+
+
 
