@@ -14,9 +14,10 @@ search: true
 
 # Introduction
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate).
+This example API documentation page was created with [Slate](https://github.com/lord/slate).
 
 # Authentication
+
 
 > To authorize, use this code:
 
@@ -27,22 +28,29 @@ import requests
 url = 'https://api.globalver.com/v1.0'
 
 headers = {
-    'username': "uname",
-    'password': "paswd",
+    'Authorization': "meowmeowmeow",
 }
 
-r = requests.post(url, headers=headers, params=payload)
+r = requests.post(url, headers=headers)
 ```
-
-> Make sure to replace `username` and `password` with your credentials.
-
-
-User credentials are expected to be included in all API requests to the server in a header that looks like the following:
 
 ```curl
-username: uname
-password: paswd
-```
+# With shell, you can just pass the correct header with each request
+curl https://api.globalver.com/v1.0
+  -H "Authorization: meowmeowmeow"
+
+> Make sure to replace `meowmeowmeow` with your API key.
+
+Globalver uses API keys to allow access to the API. You can register a new API key at our [developer portal](http://example.com/developers).
+
+The API key is expected to be included in all API requests to the server in a header that looks like the following:
+
+`Authorization: meowmeowmeow`
+
+<aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
+</aside>
+
 
 # Background Screening
 
@@ -56,8 +64,7 @@ import requests
 url = 'https://api.globalver.com/v1.0'
 
 headers = {
-    'username': "admin",
-    'password': "admin",
+    'Authorization': "meowmeowmeow",
 }
 
 payload = {
@@ -136,20 +143,19 @@ Error Code | JSON Response
 
 import requests
 
-    url = 'https://api.globalver.com/v1.0'
+url = 'https://api.globalver.com/v1.0'
 
-    headers = {
-        'username': "admin",
-        'password': "admin",
-    }
+headers = {
+    'Authorization': "meowmeowmeow",
+}
 
-    payload = {
-        'order_id': '91338',
-        'reference_id': '1234567890',
-        'sandbox': True
-    }
+payload = {
+    'order_id': '91338',
+    'reference_id': '1234567890',
+    'sandbox': True
+}
 
-    r = requests.get(url, headers=headers, params=payload)
+r = requests.get(url, headers=headers, params=payload)
 ```
 
 > The above command returns JSON structured like this:
