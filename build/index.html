@@ -247,47 +247,45 @@
 </code></pre><pre class="highlight plaintext"><code># With shell, you can just pass the correct header with each request
 curl https://api.globalver.com/v1.0
   -H "Authorization: meowmeowmeow"
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+</blockquote>
 
-&gt; Make sure to replace `meowmeowmeow` with your API key.
+<p>Globalver uses API keys to allow access to the API. You can register a new API key at our <a href="http://example.com/developers">developer portal</a>.</p>
 
-Globalver uses API keys to allow access to the API. You can register a new API key at our [developer portal](http://example.com/developers).
+<p>The API key is expected to be included in all API requests to the server in a header that looks like the following:</p>
 
-The API key is expected to be included in all API requests to the server in a header that looks like the following:
+<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
 
-`Authorization: meowmeowmeow`
+<aside class="notice">
+You must replace <code>meowmeowmeow</code> with your personal API key.
+</aside>
 
-&lt;aside class="notice"&gt;
-You must replace &lt;code&gt;meowmeowmeow&lt;/code&gt; with your personal API key.
-&lt;/aside&gt;
+<h1 id="background-screening">Background Screening</h1>
 
+<h2 id="submit-background-screening-request">Submit Background Screening Request</h2>
+<pre class="highlight python tab-python"><code>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-# Background Screening
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.globalver.com/v1.0'</span>
 
-## Submit Background Screening Request
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">"meowmeowmeow"</span><span class="p">,</span>
+<span class="p">}</span>
 
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'first_name'</span><span class="p">:</span> <span class="s">'John'</span><span class="p">,</span>
+    <span class="s">'last_name'</span><span class="p">:</span> <span class="s">'Doe'</span><span class="p">,</span>
+    <span class="s">'address'</span><span class="p">:</span> <span class="s">'123 Fake Street, Springville, UT, 12345'</span><span class="p">,</span>
+    <span class="s">'reference_id'</span><span class="p">:</span> <span class="s">'1234567890'</span><span class="p">,</span>
+    <span class="s">'ssn'</span><span class="p">:</span> <span class="s">'333-22-1111'</span><span class="p">,</span>
+    <span class="s">'DOB'</span><span class="p">:</span> <span class="s">'1990-01-01'</span><span class="p">,</span>
+    <span class="s">'screening_type'</span><span class="p">:</span> <span class="s">'all'</span><span class="p">,</span>
+    <span class="s">'sandbox'</span><span class="p">:</span> <span class="bp">True</span>
+<span class="p">}</span>
 
-```python
-
-import requests
-
-url = 'https://api.globalver.com/v1.0'
-
-headers = {
-    'Authorization': "meowmeowmeow",
-}
-
-payload = {
-    'first_name': 'John',
-    'last_name': 'Doe',
-    'address': '123 Fake Street, Springville, UT, 12345',
-    'reference_id': '1234567890',
-    'ssn': '333-22-1111',
-    'DOB': '1990-01-01',
-    'screening_type': 'all',
-    'sandbox': True
-}
-
-r = requests.post(url, headers=headers, params=payload)
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
