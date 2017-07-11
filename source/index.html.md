@@ -3,7 +3,7 @@ title: API Reference
 
 language_tabs:
   - python
-  - curl
+  - shell
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -28,27 +28,28 @@ import requests
 url = 'https://api.globalver.com/v1.0'
 
 headers = {
-    'Authorization': "meowmeowmeow",
+    'Authorization': "your_api_key",
 }
 
 r = requests.post(url, headers=headers)
 ```
 
-```curl
+```shell
 # With shell, you can just pass the correct header with each request
 curl https://api.globalver.com/v1.0
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: your_api_key"
+```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `your_api_key` with your actual API key.
 
 Globalver uses API keys to allow access to the API. You can register a new API key at our [developer portal](http://example.com/developers).
 
 The API key is expected to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: your_api_key`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>your_api_key</code> with your personal API key.
 </aside>
 
 
@@ -64,14 +65,13 @@ import requests
 url = 'https://api.globalver.com/v1.0'
 
 headers = {
-    'Authorization': "meowmeowmeow",
+    'Authorization': "your_api_key",
 }
 
 payload = {
     'first_name': 'John',
     'last_name': 'Doe',
     'address': '123 Fake Street, Springville, UT, 12345',
-    'reference_id': '1234567890',
     'ssn': '333-22-1111',
     'DOB': '1990-01-01',
     'screening_type': 'all',
@@ -81,13 +81,17 @@ payload = {
 r = requests.post(url, headers=headers, params=payload)
 ```
 
+```shell 
+curl https://api.globalver.com/v1.0
+    -H "Authorization: your_api_key"
+```
+
 > The above command returns JSON structured like this:
 
 ```json
 
 {
     "order_id": "91334", 
-    "reference_id": "1234567890", 
     "status": "pending"
     "cost": 0.0
 }
@@ -111,7 +115,7 @@ first_name     | The first name of the applicant.
 last_name      | The last name of the applicant.
 address        | The address of the applicant.
 ssn            | Social Security Number of the applicant.
-screening_type | Type of background check (all|credit|criminal)
+screening_type | Type of background check (all, credit, criminal)
 
 #### Optional
 
@@ -146,16 +150,20 @@ import requests
 url = 'https://api.globalver.com/v1.0'
 
 headers = {
-    'Authorization': "meowmeowmeow",
+    'Authorization': "your_api_key",
 }
 
 payload = {
     'order_id': '91338',
-    'reference_id': '1234567890',
     'sandbox': True
 }
 
 r = requests.get(url, headers=headers, params=payload)
+```
+
+```shell 
+curl https://api.globalver.com/v1.0
+    -H "Authorization: your_api_key"
 ```
 
 > The above command returns JSON structured like this:
@@ -163,7 +171,6 @@ r = requests.get(url, headers=headers, params=payload)
 ```json
 {
     "order_id": "91334", 
-    "reference_id": "111222333", 
     "status": "pending", 
     "report_url": "https://example.com?file=91335&format=pdf",
     "cost": 0.0

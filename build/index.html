@@ -200,7 +200,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;python&quot;,&quot;curl&quot;]">
+  <body class="index" data-languages="[&quot;python&quot;,&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,7 +211,7 @@
       <img src="images/logo.png" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="curl">curl</a>
+              <a href="#" data-language-name="shell">shell</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -240,26 +240,26 @@
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.globalver.com/v1.0'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">"meowmeowmeow"</span><span class="p">,</span>
+    <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">"your_api_key"</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-</code></pre><pre class="highlight plaintext"><code># With shell, you can just pass the correct header with each request
+</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl https://api.globalver.com/v1.0
-  -H "Authorization: meowmeowmeow"
+  -H <span class="s2">"Authorization: your_api_key"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code class="prettyprint">your_api_key</code> with your actual API key.</p>
 </blockquote>
 
 <p>Globalver uses API keys to allow access to the API. You can register a new API key at our <a href="http://example.com/developers">developer portal</a>.</p>
 
 <p>The API key is expected to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">Authorization: your_api_key</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>your_api_key</code> with your personal API key.
 </aside>
 
 <h1 id="background-screening">Background Screening</h1>
@@ -271,14 +271,13 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.globalver.com/v1.0'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">"meowmeowmeow"</span><span class="p">,</span>
+    <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">"your_api_key"</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">'first_name'</span><span class="p">:</span> <span class="s">'John'</span><span class="p">,</span>
     <span class="s">'last_name'</span><span class="p">:</span> <span class="s">'Doe'</span><span class="p">,</span>
     <span class="s">'address'</span><span class="p">:</span> <span class="s">'123 Fake Street, Springville, UT, 12345'</span><span class="p">,</span>
-    <span class="s">'reference_id'</span><span class="p">:</span> <span class="s">'1234567890'</span><span class="p">,</span>
     <span class="s">'ssn'</span><span class="p">:</span> <span class="s">'333-22-1111'</span><span class="p">,</span>
     <span class="s">'DOB'</span><span class="p">:</span> <span class="s">'1990-01-01'</span><span class="p">,</span>
     <span class="s">'screening_type'</span><span class="p">:</span> <span class="s">'all'</span><span class="p">,</span>
@@ -286,6 +285,8 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl https://api.globalver.com/v1.0
+    -H <span class="s2">"Authorization: your_api_key"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -293,7 +294,6 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91334"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
     </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -333,7 +333,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 <tr>
 <td>screening_type</td>
-<td>Type of background check (all</td>
+<td>Type of background check (all, credit, criminal)</td>
 </tr>
 </tbody></table>
 
@@ -391,23 +391,23 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.globalver.com/v1.0'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">"meowmeowmeow"</span><span class="p">,</span>
+    <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">"your_api_key"</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">'order_id'</span><span class="p">:</span> <span class="s">'91338'</span><span class="p">,</span>
-    <span class="s">'reference_id'</span><span class="p">:</span> <span class="s">'1234567890'</span><span class="p">,</span>
     <span class="s">'sandbox'</span><span class="p">:</span> <span class="bp">True</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl https://api.globalver.com/v1.0
+    -H <span class="s2">"Authorization: your_api_key"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91334"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111222333"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"report_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com?file=91335&amp;format=pdf"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
@@ -473,7 +473,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="curl">curl</a>
+                <a href="#" data-language-name="shell">shell</a>
           </div>
       </div>
     </div>
