@@ -140,7 +140,7 @@ Sandbox              | False   | If True the sandbox URL is used, otherwise use 
 Error Code | JSON Response
 ---------- | -------------
 401 | `{"errors": "Invalid login. Invalid login credentials."}`
-422 | `{"errors": {"DOB": ["Argument is required for criminal background check."] } }`
+422 | `{"errors": {"DOB": ["Not a valid datetime."] } }`
 
 
 
@@ -167,7 +167,7 @@ r = requests.get(url, headers=headers, params=payload)
 ```
 
 ```shell 
-curl https://api.globalver.com/v1.0
+curl -G https://api.globalver.com/v1.0
     -H "Authorization: your_api_key"
     -d "OrderId=91338"
     -d "Sandbox=True"
@@ -184,6 +184,8 @@ curl https://api.globalver.com/v1.0
 }
 ```
 
+This endpoint returns json data with order status and report URL.
+
 Field       | Description
 ----------- | -----------
 OrderId     | The unique identifier for the background check order
@@ -191,8 +193,6 @@ Status      | Current order status (possible values are: pending, ready, error)
 ReportUrl   | A direct link to the report document
 Cost        | The amount charged for the report ($9.99 per report type)
 
-
-This endpoint returns json data with order status and report URL.
 
 <aside class="notice">
 For <code>Sandbox</code> the cost is always 0.0.

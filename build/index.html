@@ -275,27 +275,36 @@ You must replace <code>your_api_key</code> with your personal API key.
 <span class="p">}</span>
 
 <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'first_name'</span><span class="p">:</span> <span class="s">'John'</span><span class="p">,</span>
-    <span class="s">'last_name'</span><span class="p">:</span> <span class="s">'Doe'</span><span class="p">,</span>
-    <span class="s">'address'</span><span class="p">:</span> <span class="s">'123 Fake Street, Springville, UT, 12345'</span><span class="p">,</span>
-    <span class="s">'ssn'</span><span class="p">:</span> <span class="s">'333-22-1111'</span><span class="p">,</span>
+    <span class="s">'FirstName'</span><span class="p">:</span> <span class="s">'John'</span><span class="p">,</span>
+    <span class="s">'LastName'</span><span class="p">:</span> <span class="s">'Doe'</span><span class="p">,</span>
+    <span class="s">'Address'</span><span class="p">:</span> <span class="s">'123 Fake Street, Springville, UT, 12345'</span><span class="p">,</span>
+    <span class="s">'SSN'</span><span class="p">:</span> <span class="s">'333-22-1111'</span><span class="p">,</span>
     <span class="s">'DOB'</span><span class="p">:</span> <span class="s">'1990-01-01'</span><span class="p">,</span>
-    <span class="s">'screening_type'</span><span class="p">:</span> <span class="s">'all'</span><span class="p">,</span>
-    <span class="s">'sandbox'</span><span class="p">:</span> <span class="bp">True</span>
+    <span class="s">'CreditReport'</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="s">'CriminalRecordReport'</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="s">'Sandbox'</span><span class="p">:</span> <span class="bp">True</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api.globalver.com/v1.0
     -H <span class="s2">"Authorization: your_api_key"</span>
+    -d <span class="s2">"FirstName=John"</span>
+    -d <span class="s2">"LastName=Doe"</span>
+    --data-urlencode <span class="s2">"Address=123 Fake Street, Springville, UT, 12345"</span>
+    -d <span class="s2">"SSN=333-22-1111"</span>
+    -d <span class="s2">"DOB=1990-01-01"</span>
+    -d <span class="s2">"CreditReport=True"</span>
+    -d <span class="s2">"CriminalRecordReport=False"</span>
+    -d <span class="s2">"Sandbox=True"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91334"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
-    </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+    </span><span class="s2">"OrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91334"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
+    </span><span class="s2">"Cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -316,24 +325,24 @@ You must replace <code>your_api_key</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>first_name</td>
+<td>FirstName</td>
 <td>The first name of the applicant.</td>
 </tr>
 <tr>
-<td>last_name</td>
+<td>LastName</td>
 <td>The last name of the applicant.</td>
 </tr>
 <tr>
-<td>address</td>
+<td>Address</td>
 <td>The address of the applicant.</td>
 </tr>
 <tr>
-<td>ssn</td>
+<td>SSN</td>
 <td>Social Security Number of the applicant.</td>
 </tr>
 <tr>
-<td>screening_type</td>
-<td>Type of background check (all, credit, criminal)</td>
+<td>DOB</td>
+<td>The birthdate of the applicant in yyyy-mm-dd format.</td>
 </tr>
 </tbody></table>
 
@@ -347,20 +356,21 @@ You must replace <code>your_api_key</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>DOB</td>
-<td>None</td>
-<td>The birthdate of the applicant.</td>
+<td>CreditReport</td>
+<td>True</td>
+<td>If True Credit Report is included</td>
 </tr>
 <tr>
-<td>sandbox</td>
+<td>CriminalRecordReport</td>
+<td>True</td>
+<td>If True Criminal Record Report is included</td>
+</tr>
+<tr>
+<td>Sandbox</td>
 <td>False</td>
 <td>If True the sandbox URL is used, otherwise use production URL.</td>
 </tr>
 </tbody></table>
-
-<aside class="notice">
-<code>DOB</code> field is required if <code>screening_type</code> is either <code>all</code> or <code>criminal</code>.
-</aside>
 
 <h3 id="errors">Errors</h3>
 
@@ -376,11 +386,7 @@ You must replace <code>your_api_key</code> with your personal API key.
 </tr>
 <tr>
 <td>422</td>
-<td><code class="prettyprint">{&quot;errors&quot;: {&quot;screening_type&quot;: [&quot;Not a valid choice.&quot;] } }</code></td>
-</tr>
-<tr>
-<td>422</td>
-<td><code class="prettyprint">{&quot;errors&quot;: {&quot;DOB&quot;: [&quot;Argument is required for criminal background check.&quot;] } }</code></td>
+<td><code class="prettyprint">{&quot;errors&quot;: {&quot;DOB&quot;: [&quot;Not a valid datetime.&quot;] } }</code></td>
 </tr>
 </tbody></table>
 
@@ -395,25 +401,55 @@ You must replace <code>your_api_key</code> with your personal API key.
 <span class="p">}</span>
 
 <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'order_id'</span><span class="p">:</span> <span class="s">'91338'</span><span class="p">,</span>
-    <span class="s">'sandbox'</span><span class="p">:</span> <span class="bp">True</span>
+    <span class="s">'OrderId'</span><span class="p">:</span> <span class="s">'91338'</span><span class="p">,</span>
+    <span class="s">'Sandbox'</span><span class="p">:</span> <span class="bp">True</span>
 <span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl https://api.globalver.com/v1.0
+</code></pre><pre class="highlight shell tab-shell"><code>curl -G https://api.globalver.com/v1.0
     -H <span class="s2">"Authorization: your_api_key"</span>
+    -d <span class="s2">"OrderId=91338"</span>
+    -d <span class="s2">"Sandbox=True"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91334"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"report_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com?file=91335&amp;format=pdf"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
+    </span><span class="s2">"OrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91334"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ReportUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://lightning.instascreen.net/send/interchangeview/?a=64pelqfHfjseq&amp;b=540&amp;c=rptview&amp;file=1453&amp;format=pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint returns json data with order status and report URL.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>OrderId</td>
+<td>The unique identifier for the background check order</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>Current order status (possible values are: pending, ready, error)</td>
+</tr>
+<tr>
+<td>ReportUrl</td>
+<td>A direct link to the report document</td>
+</tr>
+<tr>
+<td>Cost</td>
+<td>The amount charged for the report ($9.99 per report type)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+For <code>Sandbox</code> the cost is always 0.0.
+</aside>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -430,7 +466,7 @@ You must replace <code>your_api_key</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>order_id</td>
+<td>OrderId</td>
 <td>The unique identifier for the background check order (returned in POST request response)</td>
 </tr>
 </tbody></table>
@@ -445,7 +481,7 @@ You must replace <code>your_api_key</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>sandbox</td>
+<td>Sandbox</td>
 <td>False</td>
 <td>If True the sandbox URL is used, otherwise use production URL.</td>
 </tr>
