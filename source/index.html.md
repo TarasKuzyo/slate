@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs:
   - python
+  - curl
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -23,7 +24,7 @@ This example API documentation page was created with [Slate](https://github.com/
 ```python
 import requests
 
-url = 'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'
+url = 'https://api.globalver.com/v1.0'
 
 headers = {
     'username': "uname",
@@ -52,7 +53,7 @@ password: paswd
 
 import requests
 
-url = 'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'
+url = 'https://api.globalver.com/v1.0'
 
 headers = {
     'username': "admin",
@@ -81,6 +82,7 @@ r = requests.post(url, headers=headers, params=payload)
     "order_id": "91334", 
     "reference_id": "1234567890", 
     "status": "pending"
+    "cost": 0.0
 }
 
 ```
@@ -89,7 +91,7 @@ This endpoint returns json data with backreference details.
 
 ### HTTP Request
 
-`POST https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0`
+`POST https://api.globalver.com/v1.0`
 
 ### Query Parameters
 
@@ -108,7 +110,6 @@ screening_type | Type of background check (all|credit|criminal)
 
 Parameter    | Default | Description
 ------------ | ------- | -----------
-reference_id | random 32 character string | Provides for the client to transmit any sort of file identifier, reference data, or other information of its choosing.
 DOB          | None    | The birthdate of the applicant.
 sandbox      | False   | If True the sandbox URL is used, otherwise use production URL.
 
@@ -135,7 +136,7 @@ Error Code | JSON Response
 
 import requests
 
-    url = 'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'
+    url = 'https://api.globalver.com/v1.0'
 
     headers = {
         'username': "admin",
@@ -158,7 +159,8 @@ import requests
     "order_id": "91334", 
     "reference_id": "111222333", 
     "status": "pending", 
-    "report_url": "https://example.com?file=91335&format=pdf"
+    "report_url": "https://example.com?file=91335&format=pdf",
+    "cost": 0.0
 }
 ```
 
@@ -168,7 +170,7 @@ This endpoint returns json data with order status and report URL.
 
 ### HTTP Request
 
-`GET https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0`
+`GET https://api.globalver.com/v1.0`
 
 ### URL Parameters
 
@@ -182,8 +184,7 @@ order_id  | The unique identifier for the background check order (returned in PO
 
 Parameter    | Default | Description
 ------------ | ------- | -----------
-reference_id | None | Provides for the client to transmit any sort of file identifier, reference data, or other information of its choosing. 
-sandbox      | False | If True the sandbox URL is used, otherwise use production URL.
+sandbox      | False   | If True the sandbox URL is used, otherwise use production URL.
 
 
 ### Errors
