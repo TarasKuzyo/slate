@@ -200,7 +200,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;python&quot;,&quot;curl&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,6 +211,7 @@
       <img src="images/logo.png" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="curl">curl</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -227,7 +228,7 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>.</p>
+<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>.</p>
 
 <h1 id="authentication">Authentication</h1>
 
@@ -236,48 +237,57 @@
 </blockquote>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.globalver.com/v1.0'</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'username'</span><span class="p">:</span> <span class="s">"uname"</span><span class="p">,</span>
-    <span class="s">'password'</span><span class="p">:</span> <span class="s">"paswd"</span><span class="p">,</span>
+    <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">"meowmeowmeow"</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">username</code> and <code class="prettyprint">password</code> with your credentials.</p>
-</blockquote>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre><pre class="highlight plaintext"><code># With shell, you can just pass the correct header with each request
+curl https://api.globalver.com/v1.0
+  -H "Authorization: meowmeowmeow"
 
-<p>User credentials are expected to be included in all API requests to the server in a header that looks like the following:</p>
-<pre class="highlight plaintext"><code>username: uname
-password: paswd
-</code></pre>
-<h1 id="background-screening">Background Screening</h1>
+&gt; Make sure to replace `meowmeowmeow` with your API key.
 
-<h2 id="submit-background-screening-request">Submit Background Screening Request</h2>
-<pre class="highlight python tab-python"><code>
-<span class="kn">import</span> <span class="nn">requests</span>
+Globalver uses API keys to allow access to the API. You can register a new API key at our [developer portal](http://example.com/developers).
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'</span>
+The API key is expected to be included in all API requests to the server in a header that looks like the following:
 
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'username'</span><span class="p">:</span> <span class="s">"admin"</span><span class="p">,</span>
-    <span class="s">'password'</span><span class="p">:</span> <span class="s">"admin"</span><span class="p">,</span>
-<span class="p">}</span>
+`Authorization: meowmeowmeow`
 
-<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'first_name'</span><span class="p">:</span> <span class="s">'John'</span><span class="p">,</span>
-    <span class="s">'last_name'</span><span class="p">:</span> <span class="s">'Doe'</span><span class="p">,</span>
-    <span class="s">'address'</span><span class="p">:</span> <span class="s">'123 Fake Street, Springville, UT, 12345'</span><span class="p">,</span>
-    <span class="s">'reference_id'</span><span class="p">:</span> <span class="s">'1234567890'</span><span class="p">,</span>
-    <span class="s">'ssn'</span><span class="p">:</span> <span class="s">'333-22-1111'</span><span class="p">,</span>
-    <span class="s">'DOB'</span><span class="p">:</span> <span class="s">'1990-01-01'</span><span class="p">,</span>
-    <span class="s">'screening_type'</span><span class="p">:</span> <span class="s">'all'</span><span class="p">,</span>
-    <span class="s">'sandbox'</span><span class="p">:</span> <span class="bp">True</span>
-<span class="p">}</span>
+&lt;aside class="notice"&gt;
+You must replace &lt;code&gt;meowmeowmeow&lt;/code&gt; with your personal API key.
+&lt;/aside&gt;
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+# Background Screening
+
+## Submit Background Screening Request
+
+
+```python
+
+import requests
+
+url = 'https://api.globalver.com/v1.0'
+
+headers = {
+    'Authorization': "meowmeowmeow",
+}
+
+payload = {
+    'first_name': 'John',
+    'last_name': 'Doe',
+    'address': '123 Fake Street, Springville, UT, 12345',
+    'reference_id': '1234567890',
+    'ssn': '333-22-1111',
+    'DOB': '1990-01-01',
+    'screening_type': 'all',
+    'sandbox': True
+}
+
+r = requests.post(url, headers=headers, params=payload)
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -287,6 +297,7 @@ password: paswd
     </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91334"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234567890"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
+    </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -294,7 +305,7 @@ password: paswd
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">POST https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0</code></p>
+<p><code class="prettyprint">POST https://api.globalver.com/v1.0</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -338,11 +349,6 @@ password: paswd
 </tr>
 </thead><tbody>
 <tr>
-<td>reference_id</td>
-<td>random 32 character string</td>
-<td>Provides for the client to transmit any sort of file identifier, reference data, or other information of its choosing.</td>
-</tr>
-<tr>
 <td>DOB</td>
 <td>None</td>
 <td>The birthdate of the applicant.</td>
@@ -384,20 +390,19 @@ password: paswd
 <pre class="highlight python tab-python"><code>
 <span class="kn">import</span> <span class="nn">requests</span>
 
-    <span class="n">url</span> <span class="o">=</span> <span class="s">'https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">'https://api.globalver.com/v1.0'</span>
 
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'username'</span><span class="p">:</span> <span class="s">"admin"</span><span class="p">,</span>
-        <span class="s">'password'</span><span class="p">:</span> <span class="s">"admin"</span><span class="p">,</span>
-    <span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">"meowmeowmeow"</span><span class="p">,</span>
+<span class="p">}</span>
 
-    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'order_id'</span><span class="p">:</span> <span class="s">'91338'</span><span class="p">,</span>
-        <span class="s">'reference_id'</span><span class="p">:</span> <span class="s">'1234567890'</span><span class="p">,</span>
-        <span class="s">'sandbox'</span><span class="p">:</span> <span class="bp">True</span>
-    <span class="p">}</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">'order_id'</span><span class="p">:</span> <span class="s">'91338'</span><span class="p">,</span>
+    <span class="s">'reference_id'</span><span class="p">:</span> <span class="s">'1234567890'</span><span class="p">,</span>
+    <span class="s">'sandbox'</span><span class="p">:</span> <span class="bp">True</span>
+<span class="p">}</span>
 
-    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -406,14 +411,15 @@ password: paswd
     </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91334"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"reference_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111222333"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"report_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com?file=91335&amp;format=pdf"</span><span class="w">
+    </span><span class="s2">"report_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com?file=91335&amp;format=pdf"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cost"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint returns json data with order status and report URL.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET https://still-ravine-49399.herokuapp.com/backgroundcheck/api/v1.0</code></p>
+<p><code class="prettyprint">GET https://api.globalver.com/v1.0</code></p>
 
 <h3 id="url-parameters">URL Parameters</h3>
 
@@ -440,11 +446,6 @@ password: paswd
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>reference_id</td>
-<td>None</td>
-<td>Provides for the client to transmit any sort of file identifier, reference data, or other information of its choosing.</td>
-</tr>
 <tr>
 <td>sandbox</td>
 <td>False</td>
@@ -474,6 +475,7 @@ password: paswd
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="curl">curl</a>
           </div>
       </div>
     </div>
