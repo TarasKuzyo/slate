@@ -69,13 +69,14 @@ headers = {
 }
 
 payload = {
-    'first_name': 'John',
-    'last_name': 'Doe',
-    'address': '123 Fake Street, Springville, UT, 12345',
-    'ssn': '333-22-1111',
+    'FirstName': 'John',
+    'LastName': 'Doe',
+    'Address': '123 Fake Street, Springville, UT, 12345',
+    'SSN': '333-22-1111',
     'DOB': '1990-01-01',
-    'screening_type': 'all',
-    'sandbox': True
+    'CreditReport': True,
+    'CriminalRecordReport': False,
+    'Sandbox': True
 }
 
 r = requests.post(url, headers=headers, params=payload)
@@ -84,6 +85,14 @@ r = requests.post(url, headers=headers, params=payload)
 ```shell 
 curl https://api.globalver.com/v1.0
     -H "Authorization: your_api_key"
+    -d "FirstName=John"
+    -d "LastName=Doe"
+    --data-urlencode "Address=123 Fake Street, Springville, UT, 12345"
+    -d "SSN=333-22-1111"
+    -d "DOB=1990-01-01"
+    -d "CreditReport=True"
+    -d "CriminalRecordReport=False"
+    -d "Sandbox=True"
 ```
 
 > The above command returns JSON structured like this:
@@ -91,9 +100,9 @@ curl https://api.globalver.com/v1.0
 ```json
 
 {
-    "order_id": "91334", 
-    "status": "pending"
-    "cost": 0.0
+    "OrderId": "91334", 
+    "Status": "pending"
+    "Cost": 0.0
 }
 
 ```
@@ -111,30 +120,26 @@ This endpoint returns json data with backreference details.
 
 Parameter      | Description
 -------------- | -----------
-first_name     | The first name of the applicant.
-last_name      | The last name of the applicant.
-address        | The address of the applicant.
-ssn            | Social Security Number of the applicant.
-screening_type | Type of background check (all, credit, criminal)
+FirstName      | The first name of the applicant.
+LastName       | The last name of the applicant.
+Address        | The address of the applicant.
+SSN            | Social Security Number of the applicant.
+DOB            | The birthdate of the applicant in yyyy-mm-dd format.
 
 #### Optional
 
-Parameter    | Default | Description
------------- | ------- | -----------
-DOB          | None    | The birthdate of the applicant.
-sandbox      | False   | If True the sandbox URL is used, otherwise use production URL.
+Parameter            | Default | Description
+-------------------- | ------- | -----------
+CreditReport         | True    | If True Credit Report is included
+CriminalRecordReport | True    | If True Criminal Record Report is included
+Sandbox              | False   | If True the sandbox URL is used, otherwise use production URL.
 
-
-<aside class="notice">
-<code>DOB</code> field is required if <code>screening_type</code> is either <code>all</code> or <code>criminal</code>.
-</aside>
 
 ### Errors
 
 Error Code | JSON Response
 ---------- | -------------
 401 | `{"errors": "Invalid login. Invalid login credentials."}`
-422 | `{"errors": {"screening_type": ["Not a valid choice."] } }`
 422 | `{"errors": {"DOB": ["Argument is required for criminal background check."] } }`
 
 
@@ -154,8 +159,8 @@ headers = {
 }
 
 payload = {
-    'order_id': '91338',
-    'sandbox': True
+    'OrderId': '91338',
+    'Sandbox': True
 }
 
 r = requests.get(url, headers=headers, params=payload)
@@ -164,22 +169,34 @@ r = requests.get(url, headers=headers, params=payload)
 ```shell 
 curl https://api.globalver.com/v1.0
     -H "Authorization: your_api_key"
+    -d "OrderId=91338"
+    -d "Sandbox=True"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-    "order_id": "91334", 
-    "status": "pending", 
-    "report_url": "https://example.com?file=91335&format=pdf",
-    "cost": 0.0
+    "OrderId": "91334", 
+    "Status": "pending", 
+    "ReportUrl": "https://lightning.instascreen.net/send/interchangeview/?a=64pelqfHfjseq&b=540&c=rptview&file=1453&format=pdf",
+    "Cost": 0.0
 }
 ```
 
+Field       | Description
+----------- | -----------
+OrderId     | The unique identifier for the background check order
+Status      | Current order status (possible values are: pending, ready, error)
+ReportUrl   | A direct link to the report document
+Cost        | The amount charged for the report ($9.99 per report type)
+
+
 This endpoint returns json data with order status and report URL.
 
-
+<aside class="notice">
+For <code>Sandbox</code> the cost is always 0.0.
+</aside>
 
 ### HTTP Request
 
@@ -191,13 +208,13 @@ This endpoint returns json data with order status and report URL.
 
 Parameter | Description
 --------- | -----------
-order_id  | The unique identifier for the background check order (returned in POST request response)
+OrderId   | The unique identifier for the background check order (returned in POST request response)
 
 #### Optional
 
 Parameter    | Default | Description
 ------------ | ------- | -----------
-sandbox      | False   | If True the sandbox URL is used, otherwise use production URL.
+Sandbox      | False   | If True the sandbox URL is used, otherwise use production URL.
 
 
 ### Errors
